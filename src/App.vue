@@ -9,7 +9,7 @@
                 <!--<div slot="start">0</div>-->
                 <!--<div slot="end">{{this.questions.length - 1}}</div>-->
             <!--</mt-progress>-->
-            <mt-button @click.native="nextQuestion">下一题 {{index}}</mt-button>
+            <mt-button @click.native="nextQuestion">下一题</mt-button>
         </div>
         <div class="answer" v-if="showAnswer">
             <template v-for="q,index in questions">
@@ -26,9 +26,9 @@ export default {
   name: 'app',
   data() {
     return {
-      msg: "Welcome",
+      msg: "高绩效教练GROW辅导，请按照下面提示回答",
       questions: [
-        {q:"Goal目标设定常用的问题？",a:"",t:false},
+        {q:"Goal目标设定常用的问题",a:"",t:false},
         {q:"一，你的目标是什么？",a:"",t:true},
         {q:"二，如果你知道答案的话，那会是什么？",a:"",t:true},
         {q:"三，你具体的目标是什么？",a:"",t:true},
@@ -64,13 +64,16 @@ export default {
         {q:"四，你需要什么支持？",a:"",t:true},
         {q:"五，谁可能对此有帮助，",a:"",t:true},
         {q:"六，你何时需要支持，以及如何获得支持？",a:"",t:true},
-        {q:"高绩效教练，GROW辅导完毕",a:"",t:false}],
+        {q:"高绩效教练GROW辅导完毕",a:"",t:false}],
       index: 0,
       progress: 0,
       answer: "",
       showAnswer: true
     };
 },
+  mounted(){
+    this.$toast(this.msg);
+  },
   methods: {
     nextQuestion(){
       // 判断是否需要录入问题
